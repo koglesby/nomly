@@ -27,6 +27,9 @@ default: &default
 development:
   <<: *default
   database: nomly_development
+  username: postgres
+  password: password
+  host: localhost
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -84,5 +87,6 @@ test:
 production:
   <<: *default
   database: nomly_production
-  username: nomly
-  password: <%= ENV['NOMLY_DATABASE_PASSWORD'] %>
+  username: postgres
+  password: password
+  host: localhost
