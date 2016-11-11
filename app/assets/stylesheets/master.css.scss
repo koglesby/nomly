@@ -1,6 +1,24 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
+@font-face {
+    font-family: 'beryliumregular';
+    src: url('/assets/berylium-webfont.woff2') format('woff2'),
+         url('/assets/berylium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'beryliumbold';
+    src: url('/assets/beryliumbold-webfont.woff2') format('woff2'),
+         url('/assets/beryliumbold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .booyah-box {
   -webkit-box-shadow:1px 1px 2px 0 #d0d0d0;
   -moz-box-shadow:1px 1px 2px 0 #d0d0d0;
@@ -29,3 +47,10 @@ body {
   box-shadow: 2px 3px 6px grey;
 
 }
+
+.navbar-inverse .navbar-brand {
+  color: #00D639;
+  font-family: 'beryliumbold';
+  font-size: 26px;
+}
+
