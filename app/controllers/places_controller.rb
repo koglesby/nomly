@@ -3,7 +3,7 @@ class PlacesController < ApplicationController
 
 
   def index
-    @places = Place.page(params[:page]).per(10)
+    @places = Place.order('created_at DESC').page(params[:page]).per(10)
   end
 
   def new
@@ -42,8 +42,8 @@ class PlacesController < ApplicationController
       redirect_to root_path
     else
       render :new, status: :unprocessable_entity
+      redirect_to root_path
     end
-    redirect_to root_path
   end
 
   def destroy
