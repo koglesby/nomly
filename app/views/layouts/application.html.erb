@@ -4,6 +4,7 @@
   <title>nomly</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <meta name="viewport" content="width=device-width">
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -33,10 +34,19 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-          <li><%= link_to 'My Profile', user_path(current_user) %></li>
+          <li>
+          <%= link_to user_path(current_user) do %>
+          <i class="glyphicon glyphicon-user"></i>
+          My Profile
+          <% end %>
+          </li>
           <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
         <% else %>
-          <li><%= link_to 'Sign in', new_user_session_path %></li>
+          <li><%= link_to new_user_session_path do %>
+          <i class="glyphicon glyphicon-user"></i> 
+          Sign in
+          <% end %>
+          </li>
           <li><%= link_to 'Sign up', new_user_registration_path %></li>
         <% end %>
       </ul>

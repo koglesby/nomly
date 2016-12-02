@@ -9,21 +9,21 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <%= image_tag 'slider1.jpg', class: 'img-responsive' %>
+      <%= image_tag 'slider3.jpg', class: 'img-responsive' %>
       <div class="carousel-caption">
-        Find some great places to eat
+        find great places to eat
       </div>
     </div>
     <div class="item">
       <%= image_tag 'slider2.jpg' %>
       <div class="carousel-caption">
-        Find the best restaurants
+        rate your experience
       </div>
     </div>
     <div class="item">
-      <%= image_tag 'slider3.jpg' %>
+      <%= image_tag 'slider1.jpg' %>
       <div class="carousel-caption">
-        Fresh eats from around the world
+        share your favorites
       </div>
     </div>
   </div>
@@ -42,7 +42,7 @@
 <% @places.each do |place| %>
 
   <div class="booyah-box col-xs-10 col-xs-offset-1">
-    <h1><%= link_to place.name, place_path(place) %></h1><br />
+    <h1 id="green-links"><%= link_to place.name, place_path(place) %></h1><br />
     <i><%= place.address %></i><br /><br />
     <p><%= place.description %></p><br />
     <% if place.user.present? %>
@@ -51,11 +51,14 @@
     
     <% if place.photos.present? %>
       <br /><br />
-      <div class="col-xs-12">
+      <div class="places-photos col-xs-12">
           <% if place.photos.first.picture.present? %>
             <%= image_tag place.photos.first.picture %>
           <% end %>
+          <br />
+          <div class="photo-caption col-xs-12">
             <%= place.photos.first.caption %>
+          </div>
       </div>
     <% end %>
     
