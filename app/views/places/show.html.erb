@@ -35,16 +35,13 @@
 <% end %>
 
 <br />
-  <div class="places-photos">
     <% @place.photos.each do |photo| %>
       <%= image_tag photo.picture %>
-      <br />
       <div class="photo-caption">
         <%= photo.caption %>
       </div>  
-      <br /><br />
+      <br />
     <% end %>
-  </div>
   
   <div class="pull-right">
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">

@@ -34,6 +34,7 @@
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 0;
+  word-wrap: break-word;
 }
 
 body {
@@ -130,4 +131,11 @@ img {
 
 #green-links a {
   color: #0ead00;
+}
+
+.greenrule {
+    border: 0;
+    height: 3px;
+    width: 400px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #0ead00, rgba(0, 0, 0, 0));
 }
