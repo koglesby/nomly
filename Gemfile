@@ -40,6 +40,8 @@ gem "geocoder"
 gem 'figaro', '>= 1.0.0'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 
+gem 'mini_magick', '~> 4.5', '>= 4.5.1'
+
 gem "fog"
 # gem 'turbolinks'
 
