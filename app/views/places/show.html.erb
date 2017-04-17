@@ -40,7 +40,7 @@
     <div id="map"></div>
 <br />
 
-    <div class="galleria">
+  <div class="galleria">
     <% @place.photos.each do |photo| %>
       <img src='<%= photo.picture %>' data-description="<%= photo.caption %>">
     <% end %>
