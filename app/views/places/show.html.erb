@@ -4,9 +4,13 @@
   <br/><br/>
   <p><%= @place.description %></p>
 
+<link type="text/css" rel="stylesheet" href="/assets/galleria.classic.css">
+<script src="/assets/galleria-1.5.6.js"></script>
+<script src="/assets/galleria.classic.js"></script>
+
 </head>
   <body>
-    <div id="map"></div>
+
 
 <% if @place.latitude.present? && @place.longitude.present? %>
 
@@ -33,15 +37,14 @@
   </script>
 
 <% end %>
-
+    <div id="map"></div>
 <br />
+
+    <div class="galleria">
     <% @place.photos.each do |photo| %>
-      <%= image_tag photo.picture %>
-      <div class="photo-caption">
-        <%= photo.caption %>
-      </div>  
-      <br />
+      <img src='<%= photo.picture %>' data-description="<%= photo.caption %>">
     <% end %>
+  </div>
   
   <div class="pull-right">
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">
@@ -128,3 +131,10 @@
   </div>
 <% end %>
 
+<script>
+    Galleria.loadTheme('/assets/galleria.classic.js');
+    Galleria.run('.galleria');
+    Galleria.ready(function(){
+    $(".galleria-info-link").click()
+  })
+</script>
