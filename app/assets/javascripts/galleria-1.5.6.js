@@ -22,7 +22,7 @@ var doc    = window.document,
 
 // internal constants
     VERSION = 1.56,
-    DEBUG = true,
+    DEBUG = false,
     TIMEOUT = 30000,
     DUMMY = false,
     NAV = navigator.userAgent.toLowerCase(),
