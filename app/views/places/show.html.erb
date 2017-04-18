@@ -39,12 +39,14 @@
 <% end %>
     <div id="map"></div>
 <br />
-
-  <div class="galleria">
-    <% @place.photos.each do |photo| %>
-      <img src='<%= photo.picture %>' data-description="<%= photo.caption %>">
-    <% end %>
-  </div>
+  <% unless @place.photos.empty? %>
+    <div class="galleria">
+      <% @place.photos.each do |photo| %>
+        <img src='<%= photo.picture %>' data-description="<%= photo.caption %>">
+      <% end %>
+    </div>
+    <br />
+  <% end %>
   
   <div class="pull-right">
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">
@@ -52,7 +54,7 @@
     </button>
     <% if current_user && current_user == @place.user %>
       <%= link_to 'Edit', edit_place_path(@place), class: 'btn btn-primary' %>
-      <%= link_to 'Destroy', place_path(@place), method: :delete, data: {confirm: 'Are you sure you want to delete this?'}, class: 'btn btn-danger' %>
+      <%= link_to 'Delete Place', place_path(@place), method: :delete, data: {confirm: 'Are you sure you want to delete this?'}, class: 'btn btn-danger' %>
     <% end %>
   </div>
 
@@ -76,65 +78,69 @@
         
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <%= f.submit "Add comment", class: 'btn btn-success' %>
+          <%= f.submit "Add Comment", class: 'btn btn-success' %>
         </div>
       <% end %> 
     </div>
   </div>
 </div>
-<div class="col-xs-10 col-xs-offset-1">
-  <h1 class="pull-left">Comments</h1>
+<div class="booyah-box col-xs-10 col-xs-offset-1">
+  <div class="col-xs-10 col-xs-offset-1">
+    <h1 class="pull-left">Comments</h1>
 
-  <button type="button" class="btn btn-success btn-lg pull-right" data-toggle="modal" data-target="#myModal">
-    Add Comment
-  </button>
-</div>
-<div class="clear"></div>
+    <button type="button" class="btn btn-success btn-lg pull-right" data-toggle="modal" data-target="#myModal">
+      Add Comment
+    </button>
+  </div>
+  <div class="clear"></div>
 
-<!-- Modal -->
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Add a Photo!</h4>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Add a Photo!</h4>
+        </div>
+        <%= simple_form_for @photo, url: place_photos_path(@place) do |f| %>
+          <div class="modal-body"> 
+            <%= f.input :picture %>
+            <%= f.input :caption %>
+          </div>
+          
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <%= f.submit "Add Photo", class: 'btn btn-success' %>
+          </div>
+        <% end %> 
       </div>
-      <%= simple_form_for @photo, url: place_photos_path(@place) do |f| %>
-        <div class="modal-body"> 
-          <%= f.input :picture %>
-          <%= f.input :caption %>
-        </div>
-        
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <%= f.submit "Add Photo", class: 'btn btn-success' %>
-        </div>
-      <% end %> 
     </div>
   </div>
-</div>
-<div class="col-xs-10 col-xs-offset-1">
+  <div class="col-xs-10 col-xs-offset-1">
 
-</div>
-<div class="clear"></div>
-
-
-<% @place.comments.each do |comment| %>
-  <div class="col-xs-12 col-sm-6">
-    <blockquote>
-      <% if comment.humanized_rating.present? %>
-        <b><%= comment.humanized_rating %></b> -
-      <% end %>
-        <%= comment.message %>
-      <small><%= comment.user.email %></small>
-    </blockquote>
   </div>
-<% end %>
+  <div class="clear"></div>
 
+  <% @place.comments.each do |comment| %>
+    <div class="col-xs-12 col-sm-6">
+      <blockquote>
+        <% if comment.humanized_rating.present? %>
+          <b><%= comment.humanized_rating %></b> -
+        <% end %>
+          <%= comment.message %>
+        <small><%= comment.user.email %></small>
+      </blockquote>
+    </div>
+  <% end %>
+</div>
+<br />
 <script>
-    Galleria.loadTheme('/assets/galleria.classic.js');
-    Galleria.run('.galleria');
-    Galleria.ready(function(){
-    $(".galleria-info-link").click()
-  })
+    var presence = <%= !@place.photos.empty? %>;
+    if (presence) {
+      Galleria.loadTheme('/assets/galleria.classic.js');
+      Galleria.run('.galleria');
+      Galleria.ready(function(){
+        $(".galleria-info-link").click()
+      })
+    };
 </script>
