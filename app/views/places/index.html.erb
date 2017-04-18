@@ -52,15 +52,13 @@
     
     <% if place.photos.present? %>
       <br /><br />
-      <div class="col-xs-12">
+      <div class="index-photo col-xs-12">
+        <div id="imagee">
           <% if place.photos.first.picture.present? %>
             <%= image_tag place.photos.first.picture %>
           <% end %>
-          
-          <div class="photo-caption">
-            <%= place.photos.first.caption %>
-          <br />
-          </div>
+          <div class="caption"><%= place.photos.first.caption %></div>
+        </div>
       </div>
     <% end %>
     

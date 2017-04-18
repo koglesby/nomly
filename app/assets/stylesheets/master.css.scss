@@ -102,11 +102,32 @@ img {
   margin: auto auto;
 }
 
-.photo-caption {
-  text-align: center;
-  background-color: #ededed;
-  margin-right: 0.25em;
-  vertical-align: -0.4em;
+.index-photo {
+  text-align:center;
+}
+
+.index-photo img {
+  max-height: 457px;
+}
+
+.index-photo #imagee {
+  margin:0px 20px;
+  display: inline-block;
+  text-decoration: none;
+  color: black;
+  -webkit-box-shadow:1px 1px 2px 0 #d0d0d0;
+  -moz-box-shadow:1px 1px 2px 0 #d0d0d0;
+  box-shadow:1px 1px 2px 0 #d0d0d0;
+  background:#fff;
+  border:1px solid #ccc;
+  border-color:#e4e4e4 #bebebd #bebebd #e4e4e4;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.caption {
+  background: #ccc;
 }
 
 .carousel-inner > .item > img, .carousel-inner > .item > a > img {
